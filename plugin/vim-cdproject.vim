@@ -6,4 +6,4 @@
 function! s:cdProject()
     :echo "test"
 endfunction
-command cdproject :call <SID>cdProject()
+command Cdproject :call <SID>cdProject()

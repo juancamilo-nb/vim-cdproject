@@ -22,5 +22,5 @@ function! s:cdProject(projectName)
     
 endfunction
 
-command -nargs=1 Setproject :call <SID>setProject(<f-args>)
-command -nargs=1 Cdproject :call <SID>cdProject(<f-args>)
+command! -nargs=1 Setproject :call <SID>setProject(<f-args>)
+command! -nargs=1 Cdproject :call <SID>cdProject(<f-args>)

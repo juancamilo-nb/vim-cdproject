@@ -3,7 +3,21 @@
 " Maintainer: juancamilo.nb@gmail.com
 " License: www.opensource.org/licenses/bsd-license.php
 
-function! s:cdProject()
-    :echo "test"
+function! s:setProject(projectName)
+    let projectsFilePath = '~/.vim/bundle/vim-cdproject/plugin/projectsfile.vimData'
+    let projectsFile = readfile(glob(projectsFilePath))
+    let projectPWD = expand('%:p:h')
+    let projectsFile = eval( projectsFile[0] )
+    let projectsFile[a:projectName] =  projectPWD
+    call writefile([string(projectsFile)], glob(projectsFilePath) )
 endfunction
-command Cdproject :call <SID>cdProject()
+
+function! s:cdProject(projectName)
+    let projectsFilePath = '~/.vim/bundle/vim-cdproject/plugin/projectsfile.vimData'
+    let projectsFile = readfile(glob(projectsFilePath))
+    let projectsFile = eval( projectsFile[0] )
+    exe "lcd" . projectsFile[a:projectName]
+endfunction
+
+command -nargs=1 Setproject :call <SID>setProject(<f-args>)
+command -nargs=1 Cdproject :call <SID>cdProject(<f-args>)

@@ -10,6 +10,7 @@ function! s:setProject(projectName)
     let projectsFile = eval( projectsFile[0] )
     let projectsFile[a:projectName] =  projectPWD
     call writefile([string(projectsFile)], glob(projectsFilePath) )
+    echo "saved project in " . "\"" . projectPWD . "\"". " as " . "\"" . a:projectName . "\"" 
 endfunction
 
 function! s:cdProject(projectName)
@@ -17,6 +18,8 @@ function! s:cdProject(projectName)
     let projectsFile = readfile(glob(projectsFilePath))
     let projectsFile = eval( projectsFile[0] )
     exe "lcd" . projectsFile[a:projectName]
+    echo " now working in project " . "\"" . a:projectName . "\"" . " in " . "\"" . projectsFile[a:projectName] . "\""
+    
 endfunction
 
 command -nargs=1 Setproject :call <SID>setProject(<f-args>)

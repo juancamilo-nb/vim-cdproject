@@ -5,7 +5,7 @@ Set a list of projects and go to them easily
 ## Installation
 **through Vundle**:
 
-Plugin 'juancamilo-nb/vim-cdproject'
+    Plugin 'juancamilo-nb/vim-cdproject'
 
 ## Usage
 1. Set a project directory

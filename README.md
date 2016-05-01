@@ -1,4 +1,6 @@
-# cd to project dirs
+# vim-cdproject
+
+Set a list of projects and go to them easily
 
 ## Instalation
 **through Vundle**:

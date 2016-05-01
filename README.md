@@ -13,7 +13,7 @@ Plugin 'juancamilo-nb/vim-cdproject'
     Enter to a directory: 
     
         :cd /var/foo
-        :Setproject <any_name_for_your_project>
+        :Setproject <project_name>
 
 2. List all your projects
     

@@ -2,7 +2,7 @@
 
 Set a list of projects and go to them easily
 
-## Instalation
+## Installation
 **through Vundle**:
 
 Plugin 'juancamilo-nb/vim-cdproject'

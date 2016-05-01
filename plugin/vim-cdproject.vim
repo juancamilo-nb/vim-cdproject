@@ -28,6 +28,18 @@ function! s:listProjects()
     echo "projects " . string(keys(projectsFile))
 endfunction
 
+function! s:removeProject(projectName)
+    let projectsFilePath = '~/.vim/bundle/vim-cdproject/plugin/projectsfile.vimData'
+    let projectsFile = readfile(glob(projectsFilePath))
+    let projectsFile = eval( projectsFile[0] )
+
+    unlet projectsFile[a:projectName]
+    call writefile([string(projectsFile)], glob(projectsFilePath) )
+    echo "removed project " . a:projectName
+endfunction
+
+
 command! -nargs=1 Setproject :call <SID>setProject(<f-args>)
 command! -nargs=1 Cdproject :call <SID>cdProject(<f-args>)
-command! -nargs=0 Listproject :call <SID>listProjects()
+command! -nargs=0 Listprojects :call <SID>listProjects()
+command! -nargs=1 Removeproject :call <SID>removeProject(<f-args>)

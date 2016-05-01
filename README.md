@@ -12,17 +12,17 @@ Plugin 'juancamilo-nb/vim-cdproject'
 
     Enter to a directory: 
     
-    :cd /var/foo
-    :Setproject <any_name_for_your_project>
+        :cd /var/foo
+        :Setproject <any_name_for_your_project>
 
 2. List all your projects
     
-    :Listprojects
+        :Listprojects
 
 3. Enter to a project previously saved
 
-    :Cdproject <project_name>
+        :Cdproject <project_name>
     
 4. Remove a project from the list
 
-    :Removeproject <project_name>
+        :Removeproject <project_name>

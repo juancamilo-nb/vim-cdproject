@@ -8,8 +8,8 @@ function! s:setProject(projectName)
     let projectsFile = readfile(glob(projectsFilePath))
     let projectPWD = expand('%:p:h')
     let projectsFile = eval( projectsFile[0] )
-    let projectsFile[a:projectName] =  projectPWD
-    call writefile([string(projectsFile)], glob(projectsFilePath) )
+    let projectsDict = { a:projectName : projectPWD }
+    call writefile([string(projectsDict)], glob(projectsFilePath) )
     echo "saved project in " . "\"" . projectPWD . "\"". " as " . "\"" . a:projectName . "\"" 
 endfunction
 
@@ -17,8 +17,8 @@ function! s:cdProject(projectName)
     let projectsFilePath = '~/.vim/bundle/vim-cdproject/plugin/projectsfile.vimData'
     let projectsFile = readfile(glob(projectsFilePath))
     let projectsFile = eval( projectsFile[0] )
-    exe "lcd" . projectsFile[a:projectName]
-    echo " now working in project " . "\"" . a:projectName . "\"" . " in " . "\"" . projectsFile[a:projectName] . "\""
+    exe "cd" . projectsFile[a:projectName]
+    echo "now working in project " . "\"" . a:projectName . "\"" . " in " . "\"" . projectsFile[a:projectName] . "\""
 endfunction
 
 function! s:listProjects()
@@ -38,11 +38,26 @@ function! s:removeProject(projectName)
     echo "removed project " . a:projectName
 endfunction
 
-function! s:Completeprojects(arg_lead, cmd_line, cursor_pos)
+function! s:Completeprojects(ArgLead, CmdLine, CursorPos)
     let projectsFilePath = '~/.vim/bundle/vim-cdproject/plugin/projectsfile.vimData'
     let projectsFile = readfile(glob(projectsFilePath))
     let projectsFile = eval( projectsFile[0] )
-    return keys(projectsFile)
+
+
+    if len(a:ArgLead) > 0
+        let posibles = []
+        for item in keys(projectsFile)
+            echom item
+            echom '\'.a:ArgLead
+            echom item =~ string('\'.a:ArgLead)
+            if item =~ string('\'.a:ArgLead)
+                call add(posibles, item)
+            endif
+        endfor
+        return posibles
+    else
+        return keys(projectsFile)
+    endif
 endfunction
 
 
